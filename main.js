@@ -1,45 +1,45 @@
 var requestOptions = {
 	method: "GET",
 	redirect: "follow",
-  };
-  
-  fetch("https://hp-api.herokuapp.com/api/characters", requestOptions)
-	
+};
+
+fetch("https://hp-api.herokuapp.com/api/characters", requestOptions)
+
 	.then((response) => response.json())
-	
+
 	.then((result) => {
 
-	
-	  
-	let Characters = new Array(20);
+
+
+		let Characters = new Array(20);
 		for (let i = 0; i < 20; i++) {
 			Characters[i] = result[i]
-			
+
 		}
 
 		let triChara = sortByKey(Characters, 'name')
 
 
-	  for (let i = 0; i < 20; i++) {
-		
-		let character = triChara[i];
-		
-		
-		RenderHogwartsCharacters(character);
-		Color();
-	  }
+		for (let i = 0; i < 20; i++) {
+
+			let character = triChara[i];
+
+
+			RenderHogwartsCharacters(character);
+			Color();
+		}
 	})
-	
+
 let sectionGot = document.getElementById('section-got')
 
 sectionGot.style.display = 'none'
 
-let logoGot = document.getElementById('logo-got').style.display ='none'
+let logoGot = document.getElementById('logo-got').style.display = 'none'
 
 const containeur = document.querySelector(".containeur");
-document.body.style.backgroundImage ="url('./asset/bg-api.jpg')";
-document.body.style.backgroundSize ='cover';
-document.body.style.backgroundRepeat ='no-repeat';
+document.body.style.backgroundImage = "url('./asset/bg-api.jpg')";
+document.body.style.backgroundSize = 'cover';
+document.body.style.backgroundRepeat = 'no-repeat';
 
 function RenderHogwartsCharacters(chara) {
 
@@ -86,54 +86,54 @@ function RenderHogwartsCharacters(chara) {
 		</style>
 	  `;
 
-  }
-  
+}
+
 const selectHouse = document.getElementById('select-house')
 
-function Color(){
+function Color() {
 
-const txt = document.querySelectorAll('#color-actor');
+	const txt = document.querySelectorAll('#color-actor');
 
-txt.forEach(p=>{
-	p.style.color = "white";
-})
-	
-}
-
-function SelectCharacter(name){
-
-containeur.style.display ='none';
-
-
-
-fetch("https://hp-api.herokuapp.com/api/characters", requestOptions)
-	
-.then((response) => response.json())
-
-.then((result) => {
-  
-let triChara = result.sort();
-
-  for (let i = 0; i < 20; i++) {
-	let character = triChara[i];
-	if(character['name'] == name)
-		ShowChara(character)
-
-
-  }
-})
+	txt.forEach(p => {
+		p.style.color = "white";
+	})
 
 }
 
-var selectChara =document.getElementsByClassName('select-chara')[0];
-selectChara.style.display='flex';
-selectChara.style.justifyContent='center';
+function SelectCharacter(name) {
 
-function ShowChara(wizard){
+	containeur.style.display = 'none';
 
-	selectHouse.style.display ='none'
 
-	selectChara.style.display ='flex';
+
+	fetch("https://hp-api.herokuapp.com/api/characters", requestOptions)
+
+		.then((response) => response.json())
+
+		.then((result) => {
+
+			let triChara = result.sort();
+
+			for (let i = 0; i < 20; i++) {
+				let character = triChara[i];
+				if (character['name'] == name)
+					ShowChara(character)
+
+
+			}
+		})
+
+}
+
+var selectChara = document.getElementsByClassName('select-chara')[0];
+selectChara.style.display = 'flex';
+selectChara.style.justifyContent = 'center';
+
+function ShowChara(wizard) {
+
+	selectHouse.style.display = 'none'
+
+	selectChara.style.display = 'flex';
 
 	selectChara.innerHTML = `
 	<div class='contain contain-select' onclick="SelectCharacter('${wizard["name"]}')">
@@ -174,48 +174,49 @@ function ShowChara(wizard){
 	`
 }
 
-function ShowAllCharacters(){
+function ShowAllCharacters() {
 
-	containeur.style.display='flex';
-	
-	selectChara.style.display='none';
+	containeur.style.display = 'flex';
 
-	selectHouse.style.display ='block'
+	selectChara.style.display = 'none';
+
+	selectHouse.style.display = 'block'
 
 }
 
 function sortByKey(array, key) {
-    return array.sort(function(a, b) {
-        var x = a[key]; var y = b[key];
-        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-    });
+	return array.sort(function (a, b) {
+		var x = a[key];
+		var y = b[key];
+		return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+	});
 }
 
-function SelectByHouse(house){
+function SelectByHouse(house) {
 
 	containeur.innerHTML = ''
 
 	fetch("https://hp-api.herokuapp.com/api/characters", requestOptions)
-	
-	.then((response) => response.json())
-	
-	.then((result) => {
+
+		.then((response) => response.json())
+
+		.then((result) => {
 
 
-	  for (let i = 0; i < 20; i++) {
-		
-		let character = result[i];
-		if(character['house'] == house || house == 'Any'){
-			RenderHogwartsCharacters(character);
-			Color();
-		}
-		
-	  }
-	})
+			for (let i = 0; i < 20; i++) {
+
+				let character = result[i];
+				if (character['house'] == house || house == 'Any') {
+					RenderHogwartsCharacters(character);
+					Color();
+				}
+
+			}
+		})
 }
 
 
-selectHouse.addEventListener('change', ()=>{
+selectHouse.addEventListener('change', () => {
 	SelectByHouse(selectHouse.value)
 })
 
@@ -228,25 +229,26 @@ selectHouse.addEventListener('change', ()=>{
 
 
 
+fetch('https://thronesapi.com/api/v2/Characters')
+		.then((response) => response.json())
+		.then((result) => {
 
+			let CharactersGot = new Array(20)
+			for (let i = 0; i < 20; i++) {
+				CharactersGot[i] = result[i]
+				ShowCharaGot(CharactersGot[i])
+			}
 
-function SelectCharacterGot(name){
+		})
 
-	fetch('https://thronesapi.com/api/v2/Characters')
-	.then((response) => response.json())
-	.then((result)=>{
+// function SelectCharacterGot(name) {
 
-		let CharactersGot = new Array(20)
-		for (let i = 0; i < 20; i++) {
-			CharactersGot[i] = result[i]
-			console.log(result)
-		}
+	
 
-	})
+// }
+var showcharaGot = document.getElementsByClassName('showcharaGot')[0];
 
-}
-var showcharaGot =document.getElementsByClassName('showcharaGot')[0];
-function ShowCharaGot(charactersgot){
+function ShowCharaGot(charactersgot) {
 
 
 	showcharaGot.innerHTML = `
@@ -258,70 +260,68 @@ function ShowCharaGot(charactersgot){
 		  <p>${charactersgot["title"]}</p>
 		  <p>${charactersgot["family"]}</p>
 	</div>`
-	
-}
-function SearchGotCharacters(name){
 
 }
 
+function SearchCharaGOT(){
 
-const buttonChange = document.getElementById('switch')
+	fetch('https://thronesapi.com/api/v2/Characters')
+		.then((response) => response.json())
+		.then((result) => {
 
-function Change(){
-	let state='bg1';
 
-	buttonChange.addEventListener('click', ()=>{
-		if(state == 'bg1'){
-			document.body.style.backgroundImage = "url('/asset/The-Wall.jpg')"
-			state='bg2';
+						let CharactersGot = new Array(20);
+						showcharaGot.innerHTML = "";
+						for (let i = 0; i < 20; i++) {
+								console.log("Hello")
+							if (result[i]['fullName'].toLowerCase().includes(search.value.toLowerCase())){
+										ShowCharaGot(result[i])
+							}
 
-			document.getElementById('logo-got').style.display ='flex'
+						}
 
-			document.getElementById('logo-potter').style.display ='none'
-
-			containeur.style.display='none'
-
-			selectHouse.style.display='none'
-
-			sectionGot.style.display = 'flex'
-
-			selectChara.style.display='none';
-			
-		}else{
-			document.body.style.backgroundImage = "url('/asset/bg-api.jpg')"
-			state='bg1';
-			
-			document.getElementById('logo-potter').style.display ='flex'
-			document.getElementById('logo-got').style.display ='none'
-
-			containeur.style.display='flex'
-
-			selectHouse.style.display='flex'
-
-			 sectionGot.style.display ='none'
-		}
-	})
+				})
 
 }
 
-Change()
 
+			const buttonChange = document.getElementById('switch')
 
+			function Change() {
+				let state = 'bg1';
 
+				buttonChange.addEventListener('click', () => {
+					if (state == 'bg1') {
+						document.body.style.backgroundImage = "url('/asset/The-Wall.jpg')"
+						state = 'bg2';
 
+						document.getElementById('logo-got').style.display = 'flex'
 
+						document.getElementById('logo-potter').style.display = 'none'
 
+						containeur.style.display = 'none'
 
+						selectHouse.style.display = 'none'
 
+						sectionGot.style.display = 'flex'
 
+						selectChara.style.display = 'none';
 
+					} else {
+						document.body.style.backgroundImage = "url('/asset/bg-api.jpg')"
+						state = 'bg1';
 
+						document.getElementById('logo-potter').style.display = 'flex'
+						document.getElementById('logo-got').style.display = 'none'
 
+						containeur.style.display = 'flex'
 
+						selectHouse.style.display = 'flex'
 
+						sectionGot.style.display = 'none'
+					}
+				})
 
+			}
 
-
-
-
-
+			Change()

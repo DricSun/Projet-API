@@ -47,11 +47,18 @@ option{
     } */
 }
 
-button{
+#switch{
     position: absolute;
     right: 50px;
 }
 
 .section-got{
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-got input{
+    width: 5%;
 }
