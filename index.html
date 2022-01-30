@@ -5,26 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
-    <title>Harry Potter API</title>
+    <title>API</title>
   </head>
   <body>
     <div class="englob-title">
-       <img src="/asset/title2.png" alt="title" onclick="ShowAllCharacters()">
+       <img id="logo-potter" src="/asset/title2.png" alt="title" onclick="ShowAllCharacters()">
+       <img id="logo-got" src="/asset/GotLogo.png" alt="got-logo">
+       <button id="switch">switch</button>
     </div>
-    <div class="containeur">
+    
+    <div class="containeur" id="containeur">
 
 
 
     </div>
-    <select id="select-house">
-      <option value="Any">Toutes les maisons</option>
-      <option value="Gryffindor">Gryffondor</option>
-      <option value="Slytherin">Serpentard</option>
-      <option value="Hufflepuff">Pouffsouffle</option>
-      <option value="Ravenclaw">Serdaigle</option>
-    </select>
+    <div class="englob-select">
+        <select id="select-house">
+          <option value="Any">All House</option>
+          <option value="Gryffindor">Gryffindor</option>
+          <option value="Slytherin">Slytherin</option>
+          <option value="Hufflepuff">Hufflepuff</option>
+          <option value="Ravenclaw">Ravenclaw</option>
+        </select>
+    </div>
     <div class="select-chara">
       
+    </div>
+
+    <div class="section-got" id="section-got">
+      <input type="text" id="search" value="" placeholder="Rechercher un personnages">
+      <div class="showcharaGot">
+        
+      </div>
     </div>
     
     <script src="main.js"></script>
